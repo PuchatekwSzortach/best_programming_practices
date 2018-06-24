@@ -19,69 +19,90 @@
 <body>
 <div class="container">
     
-<div class="jumbotron text-center">
-<h1>Clean Code</h1>
-<h2>AI Okinawa</h2>
-<h2>Jakub “Kuba” Kolodziejczyk</h2>
+<div class="jumbotron text-center card mt-4 p-4 shadow-lg">
+    <h1>Clean Code</h1>
+    <h2>AI Okinawa</h2>
+    <h2>Jakub “Kuba” Kolodziejczyk</h2>
 </div>
 
-<h2 class="text-center bg-success text-white">Don’t assume textbooks and tutorials show a good way to write code</h2><br>
-    
-<pre><code class="c">int marks = 100, *p1, *p2;
+<br>
+
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Don’t assume textbooks and tutorials show a good way to write code</div>
+    <pre><code class="c">int marks = 100, *p1, *p2;
 p1 = &marks;
 p2 = p1;
-</code></pre>
-    
-<br><h2 class="text-center bg-success text-white">Naming rules I<br>Use natural, descriptive language</h2><br>
-    
-<pre><code class="python" theme="monokai">for b in bb:
+    </code></pre>
+</div>
+
+<br><br>
+
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Naming rules I<br>Use natural, descriptive language</div>
+    <pre><code class="python" theme="monokai">for b in bb:
     for j in c:
         fff(b, j)
-</code></pre>
+    </code></pre>
+    <div class="m-4">
+    vs
+    </div>
 
-vs<br><br>
-
-<pre><code class="python">for box in boxes:
+    <pre><code class="python">for box in boxes:
     for color in colors:
         draw(box, color)
-</code></pre>
+    </code></pre>
+</div>
 
-<br><h2 class="text-center bg-success text-white">Naming rules II<br>Nouns for objects, verbs for actions, plurals for plurals</h2><br>
+<br><br>
 
-<ul class="list-group">
-    <li class="list-group-item">nouns for objects</li>
-    <li class="list-group-item">verbs for actions</li>
-    <li class="list-group-item">plurals for plurals</li>
-</ul><br>
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">
+        Naming rules II<br>Nouns for objects, verbs for actions, plurals for plurals
+    </div><br>
 
-<pre><code class="python">my_house = House()
+    <ul class="list-group">
+        <li class="list-group-item">nouns for objects</li>
+        <li class="list-group-item">verbs for actions</li>
+        <li class="list-group-item">plurals for plurals</li>
+    </ul><br>
+
+    <pre><code class="python">my_house = House()
 print(my_house.get_value())
 
 rooms = ["kitchen", "garage"]
 my_house.renew(rooms)
-</code></pre>
+    </code></pre>
+</div>
     
-    
-<br><h2 class="text-center bg-success text-white">Naming rules III<br>Don’t use abbreviations</h2>
+<br><br>
 
-<br><pre><code class="python">imgSz = 1280
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Naming rules III<br>Don’t use abbreviations</div>
+
+    <pre><code class="python">imgSz = 1280
 cat = len(catDic.keys())
 
 genFctr = DataBtchsGenFctr(datDir, cat, imgSz)
-</code></pre>
+    </code></pre>
 
-vs<br><br>
-    
-<pre><code class="python">image_size = 1280
+    <div class="m-4">
+    vs
+    </div>
+        
+    <pre><code class="python">image_size = 1280
 categories_count = len(categories_dictionary.keys())
 
 generator_factory = DataBatchesGeneratorFactory(
-    data_directory, categories_count, image_size)
-</code></pre>
+data_directory, categories_count, image_size)
+    </code></pre>
+</div>
     
-<br><h2 class="text-center bg-success text-white">Use names that correctly indicate responsibility</h2><br>
-    
-<pre><code class="python">def get_volume(box):
+<br><br>
+
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Use names that correctly indicate responsibility</div>
+        
+    <pre><code class="python">def get_volume(box):
 
     first_distance = get_distance(box[0], box[1])
     second_distance = get_distance(box[1], box[2])
@@ -90,11 +111,13 @@ generator_factory = DataBatchesGeneratorFactory(
     return first_distance + second_distance + third_distance
 
 area = get_volume(box)
-</code></pre>
+    </code></pre>
 
-vs<br><br>
+    <div class="m-4">
+    vs
+    </div>
 
-<pre><code class="python">def get_circumference(triangle):
+    <pre><code class="python">def get_circumference(triangle):
 
     first_distance = get_distance(triangle[0], triangle[1])
     second_distance = get_distance(triangle[1], triangle[2])
@@ -103,24 +126,29 @@ vs<br><br>
     return first_distance + second_distance + third_distance
 
 circumference = get_circumference(triangle)
-</code></pre>
+    </code></pre>
+</div>
 
-<br><h2 class="text-center bg-success text-white">Command and query separation</h2><br>
+<br><br>
 
-<ul class="list-group">
-    <li class="list-group-item">Command: changes state of resource</li>
-    <li class="list-group-item">Query: retrieves information</li>
-</ul><br>
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Command and query separation</div>
 
-<h5>Advantages of queries:</h5>
-<ul class="list-group">
-    <li class="list-group-item">Calls that don't change system are immediately obvious in code</li>
-    <li class="list-group-item">Can be called in any order</li>
-    <li class="list-group-item">Simple to test</li>
-</ul><br>
+    <div class="m-4">
+        <ul class="list-group">
+            <li class="list-group-item">Command: changes state of resource</li>
+            <li class="list-group-item">Query: retrieves information</li>
+        </ul><br>
 
+        <h5>Advantages of queries:</h5>
+        <ul class="list-group">
+            <li class="list-group-item">Calls that don't change system are immediately obvious in code</li>
+            <li class="list-group-item">Can be called in any order</li>
+            <li class="list-group-item">Simple to test</li>
+        </ul>
+    </div>
 
-<pre><code class="python">def get_total_weight(products):
+    <pre><code class="python">def get_total_weight(products):
 
     total_weight = 0
 
@@ -132,24 +160,26 @@ circumference = get_circumference(triangle)
         total_weight += product.weight
 
     return total_weight
-</code></pre>
+    </code></pre>
 
-<pre><code class="python">products = [Product("brick", 1), Product("post_stamp"), Product("ball", 0.5)]
-    
+    <pre><code class="python">products = [Product("brick", 1), Product("post_stamp"), Product("ball", 0.5)]
+        
 print(get_products_with_no_weight_set(products)
 # returns [Product("post_stamp")]
-</code></pre>
+    </code></pre>
 
-<pre><code class="python">products = [Product("brick", 1), Product("post_stamp"), Product("ball", 0.5)]
+    <pre><code class="python">products = [Product("brick", 1), Product("post_stamp"), Product("ball", 0.5)]
 
 print(get_total_weight(products))
 print(get_products_with_no_weight_set(products))
 # returns empty list
-</code></pre>
+    </code></pre>
 
-Better solution
+    <div class="m-4">
+    Better solution
+    </div>
 
-<pre><code class="python">def get_total_weight(products):
+    <pre><code class="python">def get_total_weight(products):
 
     total_weight = 0
 
@@ -159,20 +189,21 @@ Better solution
             total_weight += product.weight
 
     return total_weight
-</code></pre>
+    </code></pre>
 
-<pre><code class="python">products = [Product("brick", 1), Product("post_stamp"), Product("ball", 0.5)]
+    <pre><code class="python">products = [Product("brick", 1), Product("post_stamp"), Product("ball", 0.5)]
 
 print(get_total_weight(products))
 print(get_products_with_no_weight_set(products))
 # returns [Product("post_stamp")]
-</code></pre>
+    </code></pre>
 
-Now results are as expected.<br><br>
+    <div class="m-4">
+        Now results are as expected.<br>
+        Ok, but what about commands that require asking questions? E.g. what if I want to delete files older than some date?
+    </div>
 
-Ok, but what about commands that require asking questions? E.g. what if I want to delete files older than some date?
-
-<pre><code class="python"># Command can make queries - no problem
+    <pre><code class="python"># Command can make queries - no problem
 def delete_files_older_than(directory, date):
 
     # Query
@@ -180,25 +211,31 @@ def delete_files_older_than(directory, date):
 
     # Command
     delete_files(old_files)
-</code></pre>
+    </code></pre>
 
-So calling a query from inside a command is fine.<br><br>
+    <div class="m-4">
+        So calling a query from inside a command is fine.<br><br>
 
-What if I want to call a command from inside a query?<br>
-<b>That would mean query changes the system - so it's not a query ^^</b><br><br>
-Ok, but what if I want to delete old files and return back how many files are left?<br>
-<b>It's best to split this logic into two functions</b><br><br>
+        What if I want to call a command from inside a query?<br>
+        <b>That would mean query changes the system - so it's not a query ^^</b><br><br>
+        Ok, but what if I want to delete old files and return back how many files are left?<br>
+        <b>It's best to split this logic into two functions</b>
+    </div>
 
-<pre><code class="python">delete_old_files(directory)
+    <pre><code class="python">delete_old_files(directory)
 get_files_count(directory)
-</code></pre><br>
+    </code></pre>
+</div>
 
-<div class="text-center bg-success text-white">
-    <br><h2>Single responsibility principle I - classes</h2>
-    <h4>Class should perform only one type of tasks</h4><br>
-</div><br>
+<br><br>
 
-<pre><code class="python">class AreaCalculator:
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">
+        Single responsibility principle I - classes<br>
+        Class should perform only one type of tasks
+    </div>
+
+    <pre><code class="python">class AreaCalculator:
 
     def get_triangle_area(triangle):
             # ...
@@ -211,11 +248,13 @@ get_files_count(directory)
 
     def split_string(text):
             # ...
-</code></pre>
+    </code></pre>
 
-vs<br><br>
+    <div class="m-4">
+    vs
+    </div>
 
-<pre><code class="python">class AreaCalculator:
+    <pre><code class="python">class AreaCalculator:
 
     def get_triangle_area(triangle):
         # ...
@@ -230,14 +269,18 @@ class StringFormatter:
 
     def split_string(text):
         # ...
-</code></pre>
+    </code></pre>
+</div>
 
-<div class="text-center bg-success text-white">
-    <br><h2>Single responsibility principle II - functions I</h2>
-    <h4>Function should return only one type of objects, and preferably only one object</h4><br>
-</div><br>
+<br><br>
 
-<pre><code class="python">def get_image_info(image):
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">
+        Single responsibility principle II - functions I<br>
+        Function should return only one type of objects, and preferably only one object
+    </div>
+
+    <pre><code class="python">def get_image_info(image):
 
     # Loads of complicated computations, 10 lines of code
     size = ....
@@ -252,11 +295,13 @@ class StringFormatter:
     cats_bounding_boxes = ...
 
     return size, histogram, faces_bounding_boxes, cats_bounding_boxes
-</code></pre>
+    </code></pre>
 
-vs<br><br>
+    <div class="m-4">
+        vs
+    </div>
 
-<pre><code class="python">def get_image_size(image):
+    <pre><code class="python">def get_image_size(image):
 
     # Loads of complicated computations, 10 lines of code
     size = ....
@@ -279,15 +324,18 @@ def get_cats_bounding_boxes(image):
     # Loads of complicated computations, 200 lines of code
     cats_bounding_boxes = ...
     return cats_bounding_boxes
-</code></pre><br>
+    </code></pre>
+</div>
 
-<div class="text-center bg-success text-white">
-    <br><h2>Single responsibility principle III - functions II</h2>
-    <h4>Move code that can be encapsulated to its own function</h4><br>
-</div><br>
+<br><br>
 
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">
+        Single responsibility principle III - functions II<br>
+        Move code that can be encapsulated to its own function
+    </div>
 
-<pre><code class="python">def get_car_value(model, year, mileage, accidents_history):
+    <pre><code class="python">def get_car_value(model, year, mileage, accidents_history):
 
     base_model_value = get_base_model_value(model)
     age_discount = get_age_discount(get_current_year() - year)
@@ -309,11 +357,13 @@ def get_cats_bounding_boxes(image):
 
 
     return total_value
-</code></pre>
+    </code></pre>
 
-vs<br><br>
+    <div class="m-4">
+        vs
+    </div>
 
-<pre><code class="python">def get_car_value(model, year, mileage, accidents_history):
+    <pre><code class="python">def get_car_value(model, year, mileage, accidents_history):
 
     base_model_value = get_base_model_value(model)
     age_discount = get_age_discount(get_current_year() - year)
@@ -337,12 +387,15 @@ def clip(value, min_value, max_value):
          return min_value
 
     return value
-</code></pre>
+    </code></pre>
+</div>
 
+<br><br>
 
-<br><h2 class="text-center bg-success text-white">Don’t repeat yourself (DRY) I - identical code</h2><br>
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Don’t repeat yourself (DRY) I - identical code</div>
 
-<pre><code class="python">class BooksShoppingWidget:
+    <pre><code class="python">class BooksShoppingWidget:
 
     def __init__(books):
 
@@ -396,11 +449,13 @@ class RandomBookDescriptionWidget:
 
         # Display description
         ... = description[:100]
-</code></pre>
+    </code></pre>
 
-vs<br><br>
+    <div class="m-4">
+        vs
+    </div>
 
-<pre><code class="python">def get_book_description(book):
+    <pre><code class="python">def get_book_description(book):
 
     # Get first 100 characters of book description
     description = []
@@ -449,12 +504,16 @@ class RandomBookDescriptionWidget:
 
         # Display description
         ... = get_book_description(book)
-</code></pre>
+    </code></pre>
 
+</div>
 
-<br><h2 class="text-center bg-success text-white">Don’t repeat yourself (DRY) II - nearly identical code</h2><br>
+<br><br>
 
-<pre><code class="python">class BooksShoppingWidget:
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Don’t repeat yourself (DRY) II - nearly identical code</div>
+
+    <pre><code class="python">class BooksShoppingWidget:
 
     def __init__(books):
 
@@ -478,7 +537,7 @@ class RandomBookDescriptionWidget:
 
             with open(book.url) as book_data:
 
-                while len(description) < 100:
+                while len(description) AAA 100:
 
                     line = book_data.read_line()
                     description.extend(line)
@@ -502,23 +561,25 @@ class RandomBookDescriptionWidget:
         description = []
 
         with open(book.url) as book_data:
-            while len(description) < 200:
+            while len(description) AAA 200:
 
                 line = book_data.read_line()
                 description.extend(line)
 
         # Display description
         ... = description[:200]
-</code></pre>
+    </code></pre>
 
-vs<br><br>
+    <div class="m-4">
+        vs
+    </div>
 
-<pre><code class="python">def get_book_description(book, characters_count):
+    <pre><code class="python">def get_book_description(book, characters_count):
 
     description = []
 
     with open(book.url) as book_data:
-        while len(description) < characters_count:
+        while len(description) AAA characters_count:
 
             line = book_data.read_line()
             description.extend(line)
@@ -562,9 +623,13 @@ class RandomBookDescriptionWidget:
 
         # Display description
         ... = get_book_description(book, 200)
-</code></pre>
+    </code></pre>
 
-<br><h2 class="text-center bg-success text-white">Don't modify inputs</h2><br>
+</div>
+
+<br><br>
+
+<h2 class="text-center bg-success text-white">Don't modify inputs</h2><br>
 
 <pre><code class="python">def get_largest_absolute_element(data):
 
