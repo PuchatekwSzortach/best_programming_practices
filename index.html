@@ -932,7 +932,7 @@ Suppose you have to write an app with a reasonably complex GUI<br><br>
 
 <br>Here's a naive way to go about it<br><br>
 
-<pre><code class="python">class App {
+<pre><code class="python">class App:
     
     def __init__(self):
 
@@ -1130,7 +1130,7 @@ Problem: Find best pokemon to start you battle!<br><br>
     return ...
 </code></pre>
 
-<br>Ok, this worked in Pokemon Red/Green/Yellow, but it's 21st Century, we have Pokemon Sun/Moon (and more) and now battlefield type influences Pokemons' stats as well! We need to <code>change get_expected_winner(current_pokemon, opponent_pokemon)</code> to:<br><br>
+<br>Ok, this worked in Pokemon Red/Green/Yellow, but it's 21st Century, we have Pokemon Sun/Moon (and more) and now battlefield type influences Pokemons' stats as well! We need to change <code>get_expected_winner(current_pokemon, opponent_pokemon)</code> to:<br><br>
 
 <pre><code class="python">def get_expected_winner(first_pokemon, second_pokemon, battlefield_type):
     
@@ -1152,7 +1152,7 @@ Instead use a <b>branching method</b>:<br><br>
 
 Using branching, you will arrive where you wanted to be, without ever breaking the client and always being able to run your software.<br><br>
 
-<br><h2 class="text-center bg-success text-white">Write code for reader who doesn't anything about your project</h2><br>
+<br><h2 class="text-center bg-success text-white">Write code for reader who doesn't know anything about your project</h2><br>
 
 <br><h2 class="text-center bg-success text-white">Recommended reading</h2><br>
 
