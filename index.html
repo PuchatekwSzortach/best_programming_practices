@@ -773,11 +773,14 @@ images = load_images("/Users/kuba/data/2017_vacation")
     </code></pre>
 </div>
 
+<br><br>
 
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">
+        Explicit is always better than implicit II - assuming your clients
+    </div>
 
-<br><h2 class="text-center bg-success text-white">Explicit is always better than implicit II - assuming your clients</h2><br>
-
-<pre><code class="python">def get_house_value(house_data):
+    <pre><code class="python">def get_house_value(house_data):
 
     if house_data.last_evaluation_date == time.today:
         return -1
@@ -787,11 +790,13 @@ images = load_images("/Users/kuba/data/2017_vacation")
     value = ...
 
     return value
-</code></pre>
+    </code></pre>
 
-Why -1 is returned when <code>last_evaluation_date == time.today</code> ?<br><br>
+    <div class="m-4">
+        Why -1 is returned when <code>last_evaluation_date == time.today</code>?
+    </div>
 
-<pre><code class="python">class PropertiesManager:
+    <pre><code class="python">class PropertiesManager:
 
     # Other code
     # ...
@@ -806,12 +811,14 @@ Why -1 is returned when <code>last_evaluation_date == time.today</code> ?<br><br
 
         house_data.value = value
         return house_data
-</code></pre>
+    </code></pre>
 
-Ok, and what would happen if someone who doesn’t know that -1 means cached results should be used calls the function?<br>
-Solution: move cache condition check to PropertiesManager<br><br>
+    <div class="m-4">
+        Ok, and what would happen if someone who doesn’t know that -1 means cached results should be used calls the function?<br>
+        Solution: move cache condition check to PropertiesManager
+    </div>
 
-<pre><code class="python">class PropertiesManager:
+    <pre><code class="python">class PropertiesManager:
 
     # Other code
     # ...
@@ -825,13 +832,19 @@ Solution: move cache condition check to PropertiesManager<br><br>
 
         house_data.value = self.houses_values_evaluated_today[id]
         return house_data
-</code></pre>
+    </code></pre>
+</div>
 
-<br><h2 class="text-center bg-success text-white">Process smallest necessary item</h2><br>
+<br>
 
-Problem: we need to compute areas of a list of boxes.<br><br>
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Process smallest necessary item</div>
 
-<pre><code class="python">def get_areas(boxes):
+    <div class="m-4">
+        Problem: we need to compute areas of a list of boxes.
+    </div>
+
+    <pre><code class="python">def get_areas(boxes):
 
     areas = []
 
@@ -843,35 +856,46 @@ Problem: we need to compute areas of a list of boxes.<br><br>
         areas.append(area)
 
     return areas
-</code></pre>
+    </code></pre>
 
-This get the job done, but what if you want to compute area of just one box? You have to call:<br><br>
+    <div class="m-4">
+        This get the job done, but what if you want to compute area of just one box? You have to call:
+    </div>
 
-<pre><code class="python"># Wrapping box in a list, unwrapping result to a single area variable
+    <pre><code class="python"># Wrapping box in a list, unwrapping result to a single area variable
 area = get_areas([box])[0]
-</code></pre>
+    </code></pre>
 
-This approach is clumsy and harder to test than it should be. It also adds unnecessary complexity of a for loop into the problem.<br>
-Solution - find the smallest task needed: compute area of a single box:<br><br>
+    <div class="m-4">
+        This approach is clumsy and harder to test than it should be. It also adds unnecessary complexity of a for loop into the problem.<br>
+        Solution - find the smallest task needed: compute area of a single box:
+    </div>
 
-<pre><code class="python">def get_area(box):
+    <pre><code class="python">def get_area(box):
 
     width = box[2] - box[1]
     height = box[3] - box[0]
     return width * height
-</code></pre>
+    </code></pre>
 
-Getting areas of a list of boxes is simple too:<br><br>
+    <div class="m-4">
+        Getting areas of a list of boxes is simple too:
+    </div>
 
-<pre><code class="python">areas = [get_area(box) for box in boxes]
-</code></pre>
-
-<br><h2 class="text-center bg-success text-white">Error codes vs exceptions</h2><br>
-
-<h5>Sample task: print a document</h5><br>
+    <pre><code class="python">areas = [get_area(box) for box in boxes]
+    </code></pre>
+</div>
 
 
-<pre><code class="python"># Using error codes
+<br><br>
+
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Error codes vs exceptions</div>
+
+    <div class="m-4 h5">Task: print a document</div>
+
+
+    <pre><code class="python"># Using error codes
 def print(document, print_settings):
 
     # Connect to printer
@@ -897,11 +921,11 @@ error = print(document, print_settings)
 
 if error != 0:
     # Do something
-</code></pre>
+    </code></pre>
 
-vs<br><br>
+    <div class="m-4">vs</div>
 
-<pre><code class="python"># With exceptions:
+    <pre><code class="python"># With exceptions:
 def print(document, print_settings):
 
     # Connect to printer
@@ -919,19 +943,25 @@ try:
     print(document, print_settings)
 except:
     # Do something
-</code></pre>
+    </code></pre>
+</div>
 
-<br><h2 class="text-center bg-success text-white">Unit tests</h2><br>
+<br><br>
 
-<h5>Why we &hearts; tests:</h5>
-<ul class="list-group">
-    <li class="list-group-item">Tests check if your new, shiny function is correct</li>
-    <li class="list-group-item">Tests check if your refactorings won't break anything</li>
-    <li class="list-group-item">Tests help you write good code, because bad code is hard to test</li>
-    <li class="list-group-item">Tests form an executable documentation</li>
-</ul><br>
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Unit tests</div>
 
-<pre><code class="python">def get_max(values):
+    <div class="m-4">
+        <h5>Why we &hearts; tests:</h5>
+        <ul class="list-group">
+            <li class="list-group-item">Tests check if your new, shiny function is correct</li>
+            <li class="list-group-item">Tests check if your refactorings won't break anything</li>
+            <li class="list-group-item">Tests help you write good code, because bad code is hard to test</li>
+            <li class="list-group-item">Tests form an executable documentation</li>
+        </ul>
+    </div>
+
+    <pre><code class="python">def get_max(values):
     """
     A simple function to get maximum value from a list of values
     """
@@ -943,9 +973,9 @@ except:
             max_value = value
 
     return max_value
-</code></pre>
+    </code></pre>
 
-<pre><code class="python"># Execute with py.test or similar
+    <pre><code class="python"># Execute with py.test or similar
 def test_get_max():
 
     values = [2, 5, 10, 1]
@@ -954,49 +984,50 @@ def test_get_max():
     actual = get_max(values)
 
     assert expected == actual
-</code></pre>
+    </code></pre>
 
-Harder example<br><br>
+    <div class="m-4">Harder example</div>
 
-<pre><code class="python"># Are you sure you can write this function without any bugs?
+    <pre><code class="python"># Are you sure you can write this function without any bugs?
 def get_polygon_area(polygon):
     
     # Loads of math
     # ...
     return area
-</code></pre>
+    </code></pre>
 
-With unit tests you will know if your code is right or wrong!<br><br>
+    <div class="m-4">With unit tests you will know if your code is right or wrong!</div>
 
-<pre><code class="python">def test_get_polygon_area_square():
+    <pre><code class="python">def test_get_polygon_area_square():
 
-    polygon = [(0, 0), (10, 0), (10, 10), (0, 10)]
+        polygon = [(0, 0), (10, 0), (10, 10), (0, 10)]
 
-    expected == 100
-    actual = get_polygon_area(polygon)
+        expected == 100
+        actual = get_polygon_area(polygon)
 
-    assert expected == actual
-
-
-def test_get_polygon_area_rectangle():
-
-    polygon = [(0, 0), (20, 0), (20, 10), (0, 10)]
-
-    expected == 200
-    actual = get_polygon_area(polygon)
-
-    assert expected == get_polygon_area(polygon)
+        assert expected == actual
 
 
-def test_get_polygon_area_triangle():
+    def test_get_polygon_area_rectangle():
 
-    polygon = [(0, 0), (10, 0), (5, 5)]
+        polygon = [(0, 0), (20, 0), (20, 10), (0, 10)]
 
-    expected == 25
-    actual = get_polygon_area(polygon)
+        expected == 200
+        actual = get_polygon_area(polygon)
 
-    assert expected == get_polygon_area(polygon)
-</code></pre>
+        assert expected == get_polygon_area(polygon)
+
+
+    def test_get_polygon_area_triangle():
+
+        polygon = [(0, 0), (10, 0), (5, 5)]
+
+        expected == 25
+        actual = get_polygon_area(polygon)
+
+        assert expected == get_polygon_area(polygon)
+    </code></pre>
+</div>
 
 <br><h5>But writing tests slows me down!</h5><br>
 
