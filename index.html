@@ -729,18 +729,21 @@ print(data)
 
 <br><br>
 
-<h2 class="text-center bg-success text-white">Explicit is always better than implicit I - using globals</h2><br>
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Explicit is always better than implicit I - using globals</div>
 
-<pre><code class="python"># script.py
+    <pre><code class="python"># script.py
 images = load_images("2017_vacation")
 
 # Do stuff
 # ...
-</code></pre>
+    </code></pre>
 
-How does the code know where <b>2017_vacation</b> folder is?<br><br>
+    <dir class="m-4">
+        How does the code know where <b>2017_vacation</b> folder is?
+    </dir>
 
-<pre><code class="python">import config
+    <pre><code class="python">import config
 
 def load_images(directory):
 
@@ -749,23 +752,28 @@ def load_images(directory):
 
     images = [cv2.image(path) for path in paths]
     return images
-</code></pre>
-
-<pre><code class="python"># Inside config module
+    </code></pre>
+    <br>
+    <pre><code class="python"># Inside config module
 data_folder = "/Users/kuba/data"
-</code></pre>
+    </code></pre>
 
-You have to read content of <b>load_images(...)</b> and of <b>config.py</b> module to understand what’s going on.
-On a different computer that doesn’t have <b>"/Users/kuba/data"</b> folder, it would be impossible to say why script fails looking at <b>scripy.py</b> alone.<br><br>
+    <div class="m-4">
+        You have to read content of <code>load_images(...)</code> and of <code>config.py</code> module to understand what’s going on.
+        On a different computer that doesn’t have <code>"/Users/kuba/data"</code> folder, it would be impossible to say why script fails looking at <code>scripy.py</code> alone.<br><br>
 
-Solution: use full path as argument to load_images<br><br>
+        Solution: use full path as argument to load_images
+    </div>
 
-<pre><code class="python"># processing.py
+    <pre><code class="python"># processing.py
 images = load_images("/Users/kuba/data/2017_vacation")
 
 # Do stuff
 # ...
-</code></pre>
+    </code></pre>
+</div>
+
+
 
 <br><h2 class="text-center bg-success text-white">Explicit is always better than implicit II - assuming your clients</h2><br>
 
