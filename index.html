@@ -629,9 +629,10 @@ class RandomBookDescriptionWidget:
 
 <br><br>
 
-<h2 class="text-center bg-success text-white">Don't modify inputs</h2><br>
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Don't modify inputs</div>
 
-<pre><code class="python">def get_largest_absolute_element(data):
+    <pre><code class="python">def get_largest_absolute_element(data):
 
     for index in range(len(data)):
         data[index] = abs(data[index])
@@ -643,12 +644,14 @@ data = [2, -3, 5, -6]
 print(data)
 print(get_largest_absolute_element(data))
 print(data)
-</code></pre>
+    </code></pre>
 
-vs<br><br>
+    <div class="m-4">
+        vs
+    </div>
 
 
-<pre><code class="python">def get_largest_absolute_element(data):
+    <pre><code class="python">def get_largest_absolute_element(data):
 
     absolute_data = [abs(element) for element in data]
     return max(absolute_data)
@@ -658,11 +661,15 @@ data = [2, -3, 5, -6]
 print(data)
 print(get_largest_absolute_element(data))
 print(data)
-</code></pre>
+    </code></pre>
+</div>
 
-<br><h2 class="text-center bg-success text-white">Split long functions into smaller ones</h2><br>
+<br><br>
 
-<pre><code class="python">def run_experiment(data_directory, model_path):
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Split long functions into smaller ones</div>
+
+    <pre><code class="python">def run_experiment(data_directory, model_path):
 
     # Build data generator
     # 20 lines of code
@@ -680,24 +687,26 @@ print(data)
     # 10 lines of code
 
     # Total of 83 lines of code
-</code></pre>
+    </code></pre>
 
-<br><pre>
-Problems:
-- Hard to fit everything in your head -> 
-    - Hard to understand
-    - Hard to make better
-    - Hard to find bugs
-    -  Hard to work on, especially for engineers new to the codebase
-- Hard to test -> 
-    - Hard to prove it’s correct ->
-        - Hard to know it’s not computing rubbish
-            - Hard to know if you can trust the results
-</pre>
+    <pre>
+    Problems:
+    - Hard to fit everything in your head -> 
+        - Hard to understand
+        - Hard to make better
+        - Hard to find bugs
+        -  Hard to work on, especially for engineers new to the codebase
+    - Hard to test -> 
+        - Hard to prove it’s correct ->
+            - Hard to know it’s not computing rubbish
+                - Hard to know if you can trust the results
+    </pre>
+    
+    <div class="m-4">
+        vs
+    </div>
 
-vs<br><br>
-
-<pre><code class="python">def run_experiment(data_directory, model_path):
+    <pre><code class="python">def run_experiment(data_directory, model_path):
 
     # Build data generator
     data_generator = get_data_generator(data_directory)
@@ -715,9 +724,12 @@ vs<br><br>
     # 10 lines of code
 
     # Total of 20 lines of code
-</code></pre>
+    </code></pre>
+</div>
 
-<br><h2 class="text-center bg-success text-white">Explicit is always better than implicit I - using globals</h2><br>
+<br><br>
+
+<h2 class="text-center bg-success text-white">Explicit is always better than implicit I - using globals</h2><br>
 
 <pre><code class="python"># script.py
 images = load_images("2017_vacation")
