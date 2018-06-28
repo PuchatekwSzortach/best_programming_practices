@@ -1027,29 +1027,36 @@ def get_polygon_area(polygon):
 
         assert expected == get_polygon_area(polygon)
     </code></pre>
+
+    <div class="m-4">
+        <div class="h5">But writing tests slows me down!</div><br>
+
+        Consider this:
+        <ul class="list-group">
+            <li class="list-group-item">If you don't know your code is correct, how can you tell you're done? If you don't know when you're done, how can you measure if tests slow you down?</li>
+            <li class="list-group-item">Is it better to write correct function in 30min, or wrong one in 10min and next week have entire team blocked for 4h while you try to figure out what needs fixing and how to fix it?</li>
+            <li class="list-group-item">Do you prefer to find your bugs yourself, or would you rather have an angry customer bring them up to your boss?</li>
+        </ul><br>
+    </div>
 </div>
 
-<br><h5>But writing tests slows me down!</h5><br>
+<br><br>
 
-Consider this:
-<ul class="list-group">
-    <li class="list-group-item">If you don't know your code is correct, how can you tell you're done? If you don't know when you're done, how can you measure if tests slow you down?</li>
-    <li class="list-group-item">Is it better to write correct function in 30min, or wrong one in 10min and next week have entire team blocked for 4h while you try to figure out what needs fixing and how to fix it?</li>
-    <li class="list-group-item">Do you prefer to find your bugs yourself, or would you rather have an angry customer bring them up to your boss?</li>
-</ul><br>
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Splitting complex classes into components</div>
 
-<h2 class="text-center bg-success text-white">Splitting complex classes into components</h2><br>
+    <div class="m-4">
+        Suppose you have to write an app with a reasonably complex GUI<br><br>
+        <figure>
+            <img src="./images/expense_manager.png" class="mx-auto d-block">
+            <figcaption class="text-center">Expense Manager app by Bishinews</figcaption>
+        </figure>
 
-Suppose you have to write an app with a reasonably complex GUI<br><br>
-<figure>
-    <img src="./images/expense_manager.png" class="mx-auto d-block">
-    <figcaption class="text-center">Expense Manager app by Bishinews</figcaption>
-</figure>
+        <br>Here's a naive way to go about it
+    </div>
 
-<br>Here's a naive way to go about it<br><br>
-
-<pre><code class="python">class App:
-    
+    <pre><code class="python">class App:
+        
     def __init__(self):
 
         # Create buttons for selecting time ranges used by expenses graphics
@@ -1072,13 +1079,15 @@ Suppose you have to write an app with a reasonably complex GUI<br><br>
         self.layout.append(time_ranges_buttons_container)
 
         # 500 more lines of code building other widgets
-</code></pre>
+    </code></pre>
 
-Every single button, label and other simple widget on the screen is defined inside App class. This makes App class very large and complex - hence hard to work with and easy to break.<br>
+    <div class="m-4">
+        Every single button, label and other simple widget on the screen is defined inside App class. This makes App class very large and complex - hence hard to work with and easy to break.<br><br>
 
-Instead of writing everything inside App class, search for components that could encapsulate simple elements.<br><br>
+        Instead of writing everything inside App class, search for components that could encapsulate simple elements.
+    </div>
 
-<pre><code class="python">class App {
+    <pre><code class="python">class App {
     
     def __init__(self):
 
@@ -1107,28 +1116,34 @@ class TimeRangesContainer(Container):
         self.add(self.yearly_button)
 
         # 20 lines of UI code around buttons
-</code></pre>
+    </code></pre>
+</div>
 
-<br><h2 class="text-center bg-success text-white">Anonymous functions and their drawbacks</h2><br>
-Without anonymous function:<br>
 
-<pre><code class="js">function on_button_clicked() {
+<br><br>
+
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Anonymous functions and their drawbacks</div>
+    
+    <div class="m-4">Without anonymous function:</div>
+
+    <pre><code class="js">function on_button_clicked() {
     // Do something
 }
 
 $(".btn_1").click(on_button_clicked);
-</code></pre>
+    </code></pre>
 
-With anonymous function:
+    <div class="m-4">With anonymous function:</div>
 
-<pre><code class="js">$(".btn_1").click(function() {
+    <pre><code class="js">$(".btn_1").click(function() {
   // Do something
 });
-</code></pre>
+    </code></pre>
 
-The problem is you can't test that. So how do you know if code below is correct?
+    <div class="m-4">The problem is you can't test that. So how do you know if code below is correct?</div>
 
-<pre><code class="js">$(".phone_number").focusout(function() {
+    <pre><code class="js">$(".phone_number").focusout(function() {
   // get text
   var phone_number = $(".phone_number").val() ;
 
@@ -1138,11 +1153,11 @@ The problem is you can't test that. So how do you know if code below is correct?
   // write it back to phone_number_form
   $(".phone_number").val(formatted_phone_number) ;
 });
-</code></pre>
+    </code></pre>
 
-If instead you wrote
+    <div class="m-4">If instead you write</div>
 
-<pre><code class="js">function get_formatted_phone_number(phone_number) {
+    <pre><code class="js">function get_formatted_phone_number(phone_number) {
 
     // format it in xxx-yyyy-zzz form
     // ....
@@ -1156,13 +1171,17 @@ $(".phone_number").focusout(function() {
     var formatted_phone_number = get_formatted_phone_number(phone_number) ;
     $(".phone_number").val(formatted_phone_number) ;
 });
-</code></pre>
+    </code></pre>
 
-you could test that your logic is correct.<br>
+    <div class="m-4">you can test that your logic is correct.<br><br></div>
+</div>
 
-<br><h2 class="text-center bg-success text-white">Use sets for filtering unique elements</h2><br>
+<br><br>
 
-<pre><code class="python">import time
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Use sets for filtering unique elements</div>
+
+    <pre><code class="python">import time
 import numpy as np
 
 
@@ -1205,19 +1224,23 @@ def main():
 
 if __name__ == "__main__":
     main()
-</code></pre>
+    </code></pre>
 
-<pre><code class="shell">python ./main.py
+    <pre><code class="shell">python ./main.py
 get_unique_elements(...) computation time: 1.90668 sec
 set(...) computation time: 0.07359 sec
 Are both unique elements the same: True
-</code></pre>
+    </code></pre>
+</div>
 
-<br><h2 class="text-center bg-success text-white">Safe interface changes with branching</h2><br>
+<br><br>
 
-Problem: Find best pokemon to start you battle!<br><br>
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Safe interface changes with branching</div>
 
-<pre><code class="python">class Trainer:
+    <div class="m-4">Problem: Find best pokemon to start you battle!</div>
+
+    <pre><code class="python">class Trainer:
 
     # Loads of other code
     ...
@@ -1238,46 +1261,65 @@ Problem: Find best pokemon to start you battle!<br><br>
             scores.append(current_pokemon_score)
 
         return self.my_pokemons(np.argmax(scores))
-</code></pre>
-<br>
-<pre><code class="python">def get_expected_winner(first_pokemon, second_pokemon):
+    </code></pre>
+    
+    <pre><code class="python">def get_expected_winner(first_pokemon, second_pokemon):
     
     # Compare levels, stats, and types to decide
     return ...
-</code></pre>
+    </code></pre>
 
-<br>Ok, this worked in Pokemon Red/Green/Yellow, but it's 21st Century, we have Pokemon Sun/Moon (and more) and now battlefield type influences Pokemons' stats as well! We need to change <code>get_expected_winner(current_pokemon, opponent_pokemon)</code> to:<br><br>
+    <div class="m-4">
+        Ok, this worked in Pokemon Red/Green/Yellow, but we entered 21st Century, we have Pokemon Sun/Moon (and more) and now battlefield type influences Pokemons' stats as well!<br>
+        We need to change <code>get_expected_winner(current_pokemon, opponent_pokemon)</code> to:
+    </div>
 
-<pre><code class="python">def get_expected_winner(first_pokemon, second_pokemon, battlefield_type):
+    <pre><code class="python">def get_expected_winner(first_pokemon, second_pokemon, battlefield_type):
     
     # Compare levels, strength, types and battlefield bonuses to decide
     return ...
-</code></pre>
+    </code></pre>
 
-<br>But if we try to change <code>get_expected_winner(...)</code> now, we will break the client (<code>Trainer</code> class) and it will stay broken until we finish writing <code>get_expected_winner(...)</code>. What if this will take us more than a few hours? Whole codebase will be broken during that time and we won't be able run our software.<br><br>
+    <div class="m-4">
+        But if we try to change <code>get_expected_winner(...)</code> now, we will break the client (<code>Trainer</code> class) and it will stay broken until we finish writing <code>get_expected_winner(...)</code>. What if this will take us more than a few hours? Whole codebase will be broken during that time and we won't be able run our software.<br><br>
 
-Instead use a <b>branching method</b>:<br><br>
-<ul class="list-group">
-    <li class="list-group-item">1. Create a copy of <code>get_expected_winner(first_pokemon, second_pokemon)</code> called <code>get_expected_winner_new(first_pokemon, second_pokemon)</code></li>
-    <li class="list-group-item">2. Add new argument: <code>get_expected_winner_new(first_pokemon, second_pokemon, battlefield_type)</code></li>
-    <li class="list-group-item">3. Work on <code>get_expected_winner_new(first_pokemon, second_pokemon, battlefield_type)</code> until it's completed</li>
-    <li class="list-group-item">4. Change <code>Trainer</code> class to use <code>get_expected_winner_new(first_pokemon, second_pokemon, battlefield_type)</code> and make sure it works as expected</li>
-    <li class="list-group-item">5. Remove <code>get_expected_winner(first_pokemon, second_pokemon)</code> and make sure everything works (maybe it had more clients you forgot about?)</li>
-    <li class="list-group-item">6. Rename <code>get_expected_winner_new(first_pokemon, second_pokemon, battlefield_type)</code> to <code>get_expected_winner(first_pokemon, second_pokemon, battlefield_type)</code> </li>
-</ul><br>
+        Instead use a <b>branching method</b>:<br><br>
 
-Using branching, you will arrive where you wanted to be, without ever breaking the client and always being able to run your software.<br><br>
+        <ul class="list-group">
+            <li class="list-group-item">1. Create a copy of <code>get_expected_winner(first_pokemon, second_pokemon)</code> called <code>get_expected_winner_new(first_pokemon, second_pokemon)</code></li>
+            <li class="list-group-item">2. Add new argument: <code>get_expected_winner_new(first_pokemon, second_pokemon, battlefield_type)</code></li>
+            <li class="list-group-item">3. Work on <code>get_expected_winner_new(first_pokemon, second_pokemon, battlefield_type)</code> until it's completed</li>
+            <li class="list-group-item">4. Change <code>Trainer</code> class to use <code>get_expected_winner_new(first_pokemon, second_pokemon, battlefield_type)</code> and make sure it works as expected</li>
+            <li class="list-group-item">5. Remove <code>get_expected_winner(first_pokemon, second_pokemon)</code> and make sure everything works (maybe it had more clients you forgot about?)</li>
+            <li class="list-group-item">6. Rename <code>get_expected_winner_new(first_pokemon, second_pokemon, battlefield_type)</code> to <code>get_expected_winner(first_pokemon, second_pokemon, battlefield_type)</code> </li>
+        </ul><br>
 
-<br><h2 class="text-center bg-success text-white">Write code for reader who doesn't know anything about your project</h2><br>
+        Using branching, you will arrive where you wanted to be, without ever breaking the client and always being able to run your software.<br><br>
+    </div>
+</div>
 
-<br><h2 class="text-center bg-success text-white">Recommended reading</h2><br>
+<br><br>
 
-<ul class="list-group">
-    <li class="list-group-item">"Code Complete" by Steve McConnell (日本語版あり)</li>
-    <li class="list-group-item">"The Algorithm Design Manual" by Steven S. Skiena (日本語版あり)</li>
-    <li class="list-group-item">"Design patterns: Elements of reusable object-oriented software" by Erich Gamma, Richard Helm, Ralph Johnson and John Vlissides (Gang of Four)</li>
-    <li class="list-group-item">"Effective Java" by Joshua Bloch (日本語版あり)</li>
-</ul><br>
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">
+        Write code for reader who doesn't know anything about your project
+    </div>
+</div>
+
+<br><br>
+
+<div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Recommended reading</div>
+
+    <ul class="list-group">
+        <li class="list-group-item">"Code Complete" by Steve McConnell (日本語版あり)</li>
+        <li class="list-group-item">"The Algorithm Design Manual" by Steven S. Skiena (日本語版あり)</li>
+        <li class="list-group-item">"Design patterns: Elements of reusable object-oriented software" by Erich Gamma, Richard Helm, Ralph Johnson and John Vlissides (Gang of Four)</li>
+        <li class="list-group-item">"Effective Java" by Joshua Bloch (日本語版あり)</li>
+    </ul>
+</div>
+
+<br><br>
 
 </div>
 </body>
