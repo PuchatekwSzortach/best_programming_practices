@@ -1255,7 +1255,9 @@ Are both unique elements the same: True
 
             for opponent_pokemon in opponents_pokemons:
 
-                is_current_pokemon_expected_winner = get_expected_winner(current_pokemon, opponent_pokemon) == current_pokemon
+                is_current_pokemon_expected_winner = \
+                    get_expected_winner(current_pokemon, opponent_pokemon) == current_pokemon
+                    
                 current_pokemon_score += int(is_current_pokemon_expected_winner)
 
             scores.append(current_pokemon_score)
@@ -1287,11 +1289,74 @@ Are both unique elements the same: True
 
         <ul class="list-group">
             <li class="list-group-item">1. Create a copy of <code>get_expected_winner(first_pokemon, second_pokemon)</code> called <code>get_expected_winner_new(first_pokemon, second_pokemon)</code></li>
+<pre><code class="python">def get_expected_winner(first_pokemon, second_pokemon):
+
+    # Compare levels, stats, and types to decide
+    return ...
+
+def get_expected_winner_new(first_pokemon, second_pokemon):
+
+    # Compare levels, stats, and types to decide
+    return ...
+</code></pre>
             <li class="list-group-item">2. Add new argument: <code>get_expected_winner_new(first_pokemon, second_pokemon, battlefield_type)</code></li>
+<pre><code class="python">def get_expected_winner(first_pokemon, second_pokemon):
+
+    # Compare levels, stats, and types to decide
+    return ...
+
+def get_expected_winner_new(first_pokemon, second_pokemon, battlefield_type):
+
+    # Compare levels, stats, types and battlefield type influence to decide
+    return ...
+</code></pre>
+
             <li class="list-group-item">3. Work on <code>get_expected_winner_new(first_pokemon, second_pokemon, battlefield_type)</code> until it's completed</li>
             <li class="list-group-item">4. Change <code>Trainer</code> class to use <code>get_expected_winner_new(first_pokemon, second_pokemon, battlefield_type)</code> and make sure it works as expected</li>
+<pre><code class="python">class Trainer:
+
+    # Loads of other code
+    ...
+
+    def get_starting_pokemon(self, opponents_pokemons):
+
+        scores = []
+
+        for current_pokemon in self.my_pokemons:
+
+            current_pokemon_score = 0
+
+            for opponent_pokemon in opponents_pokemons:
+
+                # is_current_pokemon_expected_winner = \
+                #    get_expected_winner(current_pokemon, opponent_pokemon) == current_pokemon
+
+                is_current_pokemon_expected_winner = \
+                    get_expected_winner_new(current_pokemon, opponent_pokemon, battlefield_type) == current_pokemon
+
+                current_pokemon_score += int(is_current_pokemon_expected_winner)
+
+            scores.append(current_pokemon_score)
+
+        return self.my_pokemons(np.argmax(scores))
+</code></pre>
             <li class="list-group-item">5. Remove <code>get_expected_winner(first_pokemon, second_pokemon)</code> and make sure everything works (maybe it had more clients you forgot about?)</li>
+<pre><code class="python"># def get_expected_winner(first_pokemon, second_pokemon):
+
+#     # Compare levels, stats, and types to decide
+#     return ...
+
+def get_expected_winner_new(first_pokemon, second_pokemon, battlefield_type):
+
+    # Compare levels, stats, types and battlefield type influence to decide
+    return ...
+</code></pre>
             <li class="list-group-item">6. Rename <code>get_expected_winner_new(first_pokemon, second_pokemon, battlefield_type)</code> to <code>get_expected_winner(first_pokemon, second_pokemon, battlefield_type)</code> </li>
+<pre><code class="python">def get_expected_winner(first_pokemon, second_pokemon, battlefield_type):
+
+    # Compare levels, stats, types and battlefield type influence to decide
+    return ...
+</code></pre>
         </ul><br>
 
         Using branching, you will arrive where you wanted to be, without ever breaking the client and always being able to run your software.<br><br>
