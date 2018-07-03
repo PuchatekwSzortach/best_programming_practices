@@ -34,7 +34,7 @@
 
     <div class="row">
         <div class="col-md-8">
-            <div class="m-4">
+            <div class="m-4 h4">
                 <strong>出身:</strong> ポーランド<br>
                 <strong>大学:</strong> ロンドン大学, 大阪大学<br><br>
 
@@ -62,9 +62,22 @@
 
 <div class="shadow-lg">
     <div class="h3 card-header text-center bg-success text-white">Don’t assume textbooks and tutorials show a good way to write code</div>
+
     <pre><code class="c">int marks = 100, *p1, *p2;
 p1 = &marks;
 p2 = p1;
+    </code></pre>
+
+    <div class="m-4">
+    vs
+    </div>
+
+    <pre><code class="c">int marks = 100 ;
+int *first_marks_pointer ;
+int *second_marks_pointer ;
+
+first_marks_pointer = &marks;
+second_marks_pointer = first_marks_pointer;
     </code></pre>
 </div>
 
@@ -100,10 +113,10 @@ p2 = p1;
     </ul><br>
 
     <pre><code class="python">my_house = House()
-print(my_house.get_value())
+value = my_house.get_value()
 
 rooms = ["kitchen", "garage"]
-my_house.renew(rooms)
+rooms.append("living room")
     </code></pre>
 </div>
     
@@ -112,8 +125,8 @@ my_house.renew(rooms)
 <div class="shadow-lg">
     <div class="h3 card-header text-center bg-success text-white">Naming rules III<br>Don’t use abbreviations</div>
 
-    <pre><code class="python">imgSz = 1280
-cat = len(catDic.keys())
+    <pre><code class="python">cat = len(catDic.keys())
+imgSz = 1280, 1280
 
 genFctr = DataBtchsGenFctr(datDir, cat, imgSz)
     </code></pre>
@@ -122,11 +135,10 @@ genFctr = DataBtchsGenFctr(datDir, cat, imgSz)
     vs
     </div>
         
-    <pre><code class="python">image_size = 1280
-categories_count = len(categories_dictionary.keys())
+    <pre><code class="python">categories_count = len(categories_dictionary.keys())
+image_size = 1280, 1280
 
-generator_factory = DataBatchesGeneratorFactory(
-data_directory, categories_count, image_size)
+generator_factory = DataBatchesGeneratorFactory(data_directory, categories_count, image_size)
     </code></pre>
 </div>
     
