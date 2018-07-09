@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./theme.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -590,7 +591,7 @@ class RandomBookDescriptionWidget:
 
             with open(book.url) as book_data:
 
-                while len(description) AAA 100:
+                while len(description) < 100:
 
                     line = book_data.read_line()
                     description.extend(line)
@@ -614,7 +615,7 @@ class RandomBookDescriptionWidget:
         description = []
 
         with open(book.url) as book_data:
-            while len(description) AAA 200:
+            while len(description) < 200:
 
                 line = book_data.read_line()
                 description.extend(line)
@@ -632,7 +633,7 @@ class RandomBookDescriptionWidget:
     description = []
 
     with open(book.url) as book_data:
-        while len(description) AAA characters_count:
+        while len(description) < characters_count:
 
             line = book_data.read_line()
             description.extend(line)
@@ -683,43 +684,6 @@ class RandomBookDescriptionWidget:
 <br><br>
 
 <div class="shadow-lg">
-    <div class="h3 card-header text-center bg-success text-white">Don't modify inputs</div>
-
-    <pre><code class="python">def get_largest_absolute_element(data):
-
-    for index in range(len(data)):
-        data[index] = abs(data[index])
-
-    return max(data)
-
-data = [2, -3, 5, -6]
-
-print(data)
-print(get_largest_absolute_element(data))
-print(data)
-    </code></pre>
-
-    <div class="m-4">
-        vs
-    </div>
-
-
-    <pre><code class="python">def get_largest_absolute_element(data):
-
-    absolute_data = [abs(element) for element in data]
-    return max(absolute_data)
-
-data = [2, -3, 5, -6]
-
-print(data)
-print(get_largest_absolute_element(data))
-print(data)
-    </code></pre>
-</div>
-
-<br><br>
-
-<div class="shadow-lg">
     <div class="h3 card-header text-center bg-success text-white">Split long functions into smaller ones</div>
 
     <pre><code class="python">def run_experiment(data_directory, model_path):
@@ -741,21 +705,25 @@ print(data)
 
     # Total of 83 lines of code
     </code></pre>
-
-    <pre>
-    Problems:
-    - Hard to fit everything in your head -> 
-        - Hard to understand
-        - Hard to make better
-        - Hard to find bugs
-        -  Hard to work on, especially for engineers new to the codebase
-    - Hard to test -> 
-        - Hard to prove it’s correct ->
-            - Hard to know it’s not computing rubbish
-                - Hard to know if you can trust the results
-    </pre>
     
     <div class="m-4">
+
+        <div class="h4">Problems with above code:</div>
+        <ul class="list-group">
+            <li class="list-group-item">Hard to fit everything in your head, thus
+                <div class="ml-4">
+                    <i class="fas fa-arrow-right"></i> Hard to understand<br>
+                    <i class="fas fa-arrow-right"></i> Hard to make better<br>
+                    <i class="fas fa-arrow-right"></i> Hard to find bugs<br>
+                </div>
+            </li>
+            <li class="list-group-item">Hard to test, thus
+                <div class="ml-4">
+                    <i class="fas fa-arrow-right"></i> Hard to prove it’s correct and you can trust the results<br>
+                </div>
+            </li>
+        </ul><br>
+
         vs
     </div>
 
@@ -806,7 +774,7 @@ def load_images(directory):
     images = [cv2.image(path) for path in paths]
     return images
     </code></pre>
-    <br>
+    
     <pre><code class="python"># Inside config module
 data_folder = "/Users/kuba/data"
     </code></pre>
@@ -818,7 +786,7 @@ data_folder = "/Users/kuba/data"
         Solution: use full path as argument to load_images
     </div>
 
-    <pre><code class="python"># processing.py
+    <pre><code class="python"># script.py
 images = load_images("/Users/kuba/data/2017_vacation")
 
 # Do stuff
@@ -860,7 +828,7 @@ images = load_images("/Users/kuba/data/2017_vacation")
         value = get_house_value(house_data)
 
         if value == -1:
-           value = self.houses_values_evaluated_today[id]
+           value = self.cached_houses_values[id]
 
         house_data.value = value
         return house_data
@@ -871,7 +839,15 @@ images = load_images("/Users/kuba/data/2017_vacation")
         Solution: move cache condition check to PropertiesManager
     </div>
 
-    <pre><code class="python">class PropertiesManager:
+    <pre><code class="python">def get_house_value(house_data):
+
+    # Look at size, number of rooms, neighbourhood
+    # and other factors, expensive computation
+    value = ...
+    return value
+
+
+class PropertiesManager:
 
     # Other code
     # ...
@@ -880,10 +856,10 @@ images = load_images("/Users/kuba/data/2017_vacation")
 
         house_data = database.get_house_data(id)
 
-        if id not in self.houses_values_evaluated_today.keys():
-            self.houses_values_evaluated_today[id] = get_house_value(house_data)
+        if house_data.last_evaluation_date != time.today:
+            self.cached_houses_values[id] = get_house_value(house_data)
 
-        house_data.value = self.houses_values_evaluated_today[id]
+        house_data.value = self.cached_houses_values[id]
         return house_data
     </code></pre>
 </div>
@@ -915,7 +891,10 @@ images = load_images("/Users/kuba/data/2017_vacation")
         This get the job done, but what if you want to compute area of just one box? You have to call:
     </div>
 
-    <pre><code class="python"># Wrapping box in a list, unwrapping result to a single area variable
+    <pre><code class="python"># I can't do this
+area = get_areas(box) # error!!!
+
+# So I have to do this
 area = get_areas([box])[0]
     </code></pre>
 
