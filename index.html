@@ -1205,7 +1205,16 @@ $(".phone_number").focusout(function() {
 });
     </code></pre>
 
-    <div class="m-4">you can test that your logic is correct.<br><br></div>
+    <div class="m-4">you can test that your logic is correct</div>
+
+    <pre><code class="js">test('phone number is correctly formatted', () => {
+
+    expected = "123-456-789"
+    actual = get_formatted_phone_number("123456789")
+
+    expect(actual).toBe(expected)
+});
+    </code></pre>
 </div>
 
 <br><br>
