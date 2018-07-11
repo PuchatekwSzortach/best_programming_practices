@@ -178,6 +178,100 @@ circumference = get_circumference(triangle)
 <br><br>
 
 <div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Unit tests</div>
+
+    <div class="m-4">
+        <h5>Why we &hearts; tests:</h5>
+        <ul class="list-group">
+            <li class="list-group-item">Tests check if your new, shiny function is correct</li>
+            <li class="list-group-item">Tests check if your refactorings won't break anything</li>
+            <li class="list-group-item">Tests help you write good code, because bad code is hard to test</li>
+            <li class="list-group-item">Tests form an executable documentation</li>
+        </ul>
+    </div>
+
+    <pre><code class="python">def get_max(values):
+    """
+    A simple function to get maximum value from a list of values
+    """
+
+    max_value = values[0]
+
+    for value in values[1:]:
+        if value > max_value:
+            max_value = value
+
+    return max_value
+    </code></pre>
+
+    <pre><code class="python"># Execute with py.test or similar
+def test_get_max():
+
+    values = [2, 5, 10, 1]
+
+    expected = 10
+    actual = get_max(values)
+
+    assert expected == actual
+    </code></pre>
+
+    <div class="m-4">Harder example</div>
+
+    <pre><code class="python"># Are you sure you can write this function without any bugs?
+def get_polygon_area(polygon):
+    
+    # Loads of math
+    # ...
+    return area
+    </code></pre>
+
+    <div class="m-4">With unit tests you will know if your code is right or wrong!</div>
+
+    <pre><code class="python">def test_get_polygon_area_square():
+
+        polygon = [(0, 0), (10, 0), (10, 10), (0, 10)]
+
+        expected == 100
+        actual = get_polygon_area(polygon)
+
+        assert expected == actual
+
+
+    def test_get_polygon_area_rectangle():
+
+        polygon = [(0, 0), (20, 0), (20, 10), (0, 10)]
+
+        expected == 200
+        actual = get_polygon_area(polygon)
+
+        assert expected == get_polygon_area(polygon)
+
+
+    def test_get_polygon_area_triangle():
+
+        polygon = [(0, 0), (10, 0), (5, 5)]
+
+        expected == 25
+        actual = get_polygon_area(polygon)
+
+        assert expected == get_polygon_area(polygon)
+    </code></pre>
+
+    <div class="m-4">
+        <div class="h5">But writing tests slows me down!</div><br>
+
+        Consider this:
+        <ul class="list-group">
+            <li class="list-group-item">If you don't know your code is correct, how can you tell you're done? If you don't know when you're done, how can you measure if tests slow you down?</li>
+            <li class="list-group-item">Is it better to write correct function in 30min, or wrong one in 10min and next week have entire team blocked for 4h while you try to figure out what needs fixing and how to fix it?</li>
+            <li class="list-group-item">Do you prefer to find your bugs yourself, or would you rather have an angry customer bring them up to your boss?</li>
+        </ul><br>
+    </div>
+</div>
+
+<br><br>
+
+<div class="shadow-lg">
     <div class="h3 card-header text-center bg-success text-white">Command and query separation</div>
 
     <div class="m-4">
@@ -976,100 +1070,6 @@ try:
 except:
     # Do something
     </code></pre>
-</div>
-
-<br><br>
-
-<div class="shadow-lg">
-    <div class="h3 card-header text-center bg-success text-white">Unit tests</div>
-
-    <div class="m-4">
-        <h5>Why we &hearts; tests:</h5>
-        <ul class="list-group">
-            <li class="list-group-item">Tests check if your new, shiny function is correct</li>
-            <li class="list-group-item">Tests check if your refactorings won't break anything</li>
-            <li class="list-group-item">Tests help you write good code, because bad code is hard to test</li>
-            <li class="list-group-item">Tests form an executable documentation</li>
-        </ul>
-    </div>
-
-    <pre><code class="python">def get_max(values):
-    """
-    A simple function to get maximum value from a list of values
-    """
-
-    max_value = values[0]
-
-    for value in values[1:]:
-        if value > max_value:
-            max_value = value
-
-    return max_value
-    </code></pre>
-
-    <pre><code class="python"># Execute with py.test or similar
-def test_get_max():
-
-    values = [2, 5, 10, 1]
-
-    expected = 10
-    actual = get_max(values)
-
-    assert expected == actual
-    </code></pre>
-
-    <div class="m-4">Harder example</div>
-
-    <pre><code class="python"># Are you sure you can write this function without any bugs?
-def get_polygon_area(polygon):
-    
-    # Loads of math
-    # ...
-    return area
-    </code></pre>
-
-    <div class="m-4">With unit tests you will know if your code is right or wrong!</div>
-
-    <pre><code class="python">def test_get_polygon_area_square():
-
-        polygon = [(0, 0), (10, 0), (10, 10), (0, 10)]
-
-        expected == 100
-        actual = get_polygon_area(polygon)
-
-        assert expected == actual
-
-
-    def test_get_polygon_area_rectangle():
-
-        polygon = [(0, 0), (20, 0), (20, 10), (0, 10)]
-
-        expected == 200
-        actual = get_polygon_area(polygon)
-
-        assert expected == get_polygon_area(polygon)
-
-
-    def test_get_polygon_area_triangle():
-
-        polygon = [(0, 0), (10, 0), (5, 5)]
-
-        expected == 25
-        actual = get_polygon_area(polygon)
-
-        assert expected == get_polygon_area(polygon)
-    </code></pre>
-
-    <div class="m-4">
-        <div class="h5">But writing tests slows me down!</div><br>
-
-        Consider this:
-        <ul class="list-group">
-            <li class="list-group-item">If you don't know your code is correct, how can you tell you're done? If you don't know when you're done, how can you measure if tests slow you down?</li>
-            <li class="list-group-item">Is it better to write correct function in 30min, or wrong one in 10min and next week have entire team blocked for 4h while you try to figure out what needs fixing and how to fix it?</li>
-            <li class="list-group-item">Do you prefer to find your bugs yourself, or would you rather have an angry customer bring them up to your boss?</li>
-        </ul><br>
-    </div>
 </div>
 
 <br><br>
