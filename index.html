@@ -237,24 +237,24 @@ def get_polygon_area(polygon):
         assert expected == actual
 
 
-    def test_get_polygon_area_rectangle():
+def test_get_polygon_area_rectangle():
 
-        polygon = [(0, 0), (20, 0), (20, 10), (0, 10)]
+    polygon = [(0, 0), (20, 0), (20, 10), (0, 10)]
 
-        expected == 200
-        actual = get_polygon_area(polygon)
+    expected == 200
+    actual = get_polygon_area(polygon)
 
-        assert expected == get_polygon_area(polygon)
+    assert expected == get_polygon_area(polygon)
 
 
-    def test_get_polygon_area_triangle():
+def test_get_polygon_area_triangle():
 
-        polygon = [(0, 0), (10, 0), (5, 5)]
+    polygon = [(0, 0), (10, 0), (5, 5)]
 
-        expected == 25
-        actual = get_polygon_area(polygon)
+    expected == 25
+    actual = get_polygon_area(polygon)
 
-        assert expected == get_polygon_area(polygon)
+    assert expected == get_polygon_area(polygon)
     </code></pre>
 
     <div class="m-4">
