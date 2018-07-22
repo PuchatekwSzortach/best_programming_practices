@@ -883,44 +883,57 @@ class RandomBookDescriptionWidget:
 <div class="shadow-lg">
     <div class="h3 card-header text-center bg-success text-white">Explicit is always better than implicit I - using globals</div>
 
-    <pre><code class="python"># script.py
-images = load_images("2017_vacation")
+    <dir class="m-4">
+        Say you see code like this:
+    </dir>
 
-# Do stuff
-# ...
+    <pre><code class="python"># script.py
+text = "I like cats. I like dogs. Dogs don't like cats. I wish they would like each other."
+
+frequent_words = get_frequent_words(text)
+print(frequent_words) # prints ['I', 'like']
     </code></pre>
 
     <dir class="m-4">
-        How does the code know where <b>2017_vacation</b> folder is?
+        But how does this code decide which words are <b>frequent</b>? We have to look inside the function to find out:
     </dir>
 
     <pre><code class="python">import config
 
-def load_images(directory):
+def get_frequent_words(text):
 
-    paths_pattern = os.path.join(config.data_folder, directory, "*.jpg")
-    paths = glob.glob(paths_pattern)
+    words = re.findall(r"\w+", text)
+    words_counter = collections.Counter(words)
+    
+    frequent_words = [word for word, count in words_counter.items() 
+                      if config.frequent_words_threshold <= count]
 
-    images = [cv2.image(path) for path in paths]
-    return images
+    return frequent_words
     </code></pre>
     
     <pre><code class="python"># Inside config module
-data_folder = "/Users/kuba/data"
+frequent_words_threshold = 3
     </code></pre>
 
     <div class="m-4">
-        You have to read content of <code>load_images(...)</code> and of <code>config.py</code> module to understand what’s going on.
-        On a different computer that doesn’t have <code>"/Users/kuba/data"</code> folder, it would be impossible to say why script fails looking at <code>scripy.py</code> alone.<br><br>
+        You have to read content of <code>get_frequent_words(...)</code> and of <code>config</code> module to understand what’s going on.<br>
+        That's an implicit code - it hides some of its inputs from the reader, so it is difficult to understand how it works.<br><br>
+        
+        <ul class="list-group">
+            Solution: 
 
-        Solution: use full path as argument to load_images
+            <li class="list-group-item">change globals into function arguments</li>
+            <li class="list-group-item">move configuration values into script entry point</li>
+
     </div>
 
     <pre><code class="python"># script.py
-images = load_images("/Users/kuba/data/2017_vacation")
+import config
 
-# Do stuff
-# ...
+text = "I like cats. I like dogs. Dogs don't like cats. I wish they would like each other."
+
+frequent_words = get_frequent_words(text, config.frequent_words_threshold)
+print(frequent_words) # prints ['I', 'like']
     </code></pre>
 </div>
 
