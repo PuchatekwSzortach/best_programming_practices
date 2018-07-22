@@ -274,6 +274,107 @@ def test_get_polygon_area_triangle():
 <br><br>
 
 <div class="shadow-lg">
+    <div class="h3 card-header text-center bg-success text-white">Testing makes your code better</div>
+
+    <div class="m-4">
+        Say you have to write functionality that counts number of words in some text files, and you come up following code:
+    </div>
+
+    <pre><code class="python">def get_words_count(path):
+
+    with open(path) as file:
+
+        text = file.read()
+
+        matches = re.findall(pattern=r"\w+", string=text)
+        return len(matches)
+    </code></pre>
+
+    <div class="m-4">
+        This code looks ok on cursory inspection, but what would happen if you were to test it?<br>
+        You would have to do something like this:
+    </div>
+
+    <pre><code class="python">def test_get_words_count_simple_input():
+
+    with tempfile.NamedTemporaryFile(mode="w") as file:
+
+        file.write("some simple text")
+        file.flush()
+
+        expected = 3
+        actual = get_words_count(file.name)
+
+    assert expected == actual
+
+
+def test_get_words_count_input_contains_special_characters():
+
+    with tempfile.NamedTemporaryFile(mode="w") as file:
+
+        file.write("Some !!! special ??? characters --- here")
+        file.flush()
+
+        expected = 4
+        actual = get_words_count(file.name)
+
+    assert expected == actual
+    </code></pre>   
+
+    <div class="m-4">
+
+        But why is that necessary? After all counting words shouldn't require you to create a file, right?<br>
+        Creating a file has nothing to do with functionality you want to test, so why is it necessary to perform testing?<br><br>
+
+        If testing the functionality is not convenient, then that functionality likely isn't written in a flexible way and won't be easy to use under different circumstances.<br>
+        Say what would happen if I wanted to count number of words on a webpage available online? I would have to download to local drive first, and then take care of deleting it.<br><br>
+
+        All of this suggests that there are some problems with our function. Now let's think what would be easy to test?<br>
+        How about
+
+    </div>
+
+    <pre><code class="python">def get_words_count(text):
+
+    matches = re.findall(pattern=r"\w+", string=text)
+    return len(matches)
+    </code></pre> 
+
+    <div class="m-4">
+        Now testing is simple too!
+    </div>
+
+    <pre><code class="python">def test_get_words_count_simple_input():
+
+    expected = 3
+    actual = get_words_count("some simple text")
+
+    assert expected == actual
+
+
+def test_get_words_count_input_contains_special_characters():
+
+    expected = 4
+    actual = get_words_count("Some !!! special ??? characters --- here")
+
+    assert expected == actual
+    </code></pre>
+
+    <div class="m-4">
+        And with this setup it will be easy to use our function with a wide range of input sources.<br><br>
+
+        <h5 class="font-weight-bold text-primary">
+            TL;DR: Testing makes your code better!
+        </h5>
+        <br>
+    </div>
+
+
+</div
+
+<br><br>
+
+<div class="shadow-lg">
     <div class="h3 card-header text-center bg-success text-white">Command and query separation</div>
 
     <div class="m-4">
