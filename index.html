@@ -1007,61 +1007,6 @@ class PropertiesManager:
     </code></pre>
 </div>
 
-<br>
-
-<div class="shadow-lg">
-    <div class="h3 card-header text-center bg-success text-white">Process smallest necessary item</div>
-
-    <div class="m-4">
-        Problem: we need to compute areas of a list of boxes.
-    </div>
-
-    <pre><code class="python">def get_areas(boxes):
-
-    areas = []
-
-    for box in boxes:
-
-        width = box[2] - box[1]
-        height = box[3] - box[0]
-        area = width * height
-        areas.append(area)
-
-    return areas
-    </code></pre>
-
-    <div class="m-4">
-        This get the job done, but what if you want to compute area of just one box? You have to call:
-    </div>
-
-    <pre><code class="python"># I can't do this
-area = get_areas(box) # error!!!
-
-# So I have to do this
-area = get_areas([box])[0]
-    </code></pre>
-
-    <div class="m-4">
-        This approach is clumsy and harder to test than it should be. It also adds unnecessary complexity of a for loop into the problem.<br>
-        Solution - find the smallest task needed: compute area of a single box:
-    </div>
-
-    <pre><code class="python">def get_area(box):
-
-    width = box[2] - box[1]
-    height = box[3] - box[0]
-    return width * height
-    </code></pre>
-
-    <div class="m-4">
-        Getting areas of a list of boxes is simple too:
-    </div>
-
-    <pre><code class="python">areas = [get_area(box) for box in boxes]
-    </code></pre>
-</div>
-
-
 <br><br>
 
 <div class="shadow-lg">
